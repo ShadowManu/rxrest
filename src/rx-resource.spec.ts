@@ -102,8 +102,8 @@ describe('RxResource', () => {
 
     it('should have body and delete', (done) => {
       expect((resource as any).config.requester.deleted).toBe(false);
-      resource.delete('5', { body: { id: '6' }}).subscribe(() => {
-        expect((resource as any).config.requester.deleted).toBe(true);
+      resource.delete(1, { id: '6' }).subscribe((response) => {
+        expect(isMatch(response, { id: '6'})).toBe(true);
         done();
       });
     });

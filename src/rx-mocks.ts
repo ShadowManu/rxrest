@@ -41,7 +41,7 @@ export class MockRequester implements RequestDelegate {
 
   delete(url: string, args?: any): Observable<any> {
     this.deleted = true;
-    return asObservable(undefined);
+    return asObservable(assign({}, args.body, { deleted: true }));
   }
 }
 

@@ -23,7 +23,6 @@ export interface URLInput {
 
 export interface MethodArgs {
   url?: any;
-  body?: any;
 }
 
 export type URLBuilder = (input: URLInput, args?: any) => string;
