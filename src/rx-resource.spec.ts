@@ -93,7 +93,7 @@ describe('RxResource', () => {
     it('should delete', (done) => {
       expect((resource as any).config.requester.deleted).toBe(false);
 
-      resource.delete('5').subscribe(() => {
+      resource.delete({id: '5'}).subscribe(() => {
         expect((resource as any).config.requester.deleted).toBe(true);
         done();
       });
