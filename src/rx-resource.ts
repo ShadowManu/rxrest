@@ -77,15 +77,12 @@ export class RxResource<T> {
     return replayer;
   }
 
-  delete(body: any, args: MethodArgs = {}): Observable<any> {
+  delete(id: any, args: MethodArgs = {}): Observable<any> {
     // Build url
     let url = this.config.urlBuilder({ type: this.type, action: 'create', baseUrl: this.config.baseUrl }, args.url);
 
-    // Request maps
-    let requestMapped = mapObservable(asObservable(body), this.config.requestMaps);
-
     // Make request
-    let requested = requestMapped.concatMap((finalBody: any) => this.config.requester.delete(url, finalBody));
+    let requested = this.config.requester.delete(url, args);
 
     // Make Observable code strict, saving the last result
     let replayer = requested.publishReplay(1);

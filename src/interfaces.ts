@@ -5,7 +5,7 @@ export interface RequestDelegate {
   post(url: string, body?: any, args?: any): Observable<any>;
   put?(url: string, body: any, args?: any): Observable<any>;
   patch(url: string, body: any, args?: any): Observable<any>;
-  delete(url: string, body?: any, args?: any): Observable<any>;
+  delete(url: string, args?: any): Observable<any>;
 }
 
 export type MapFunction = (value: any) => any;
@@ -23,6 +23,7 @@ export interface URLInput {
 
 export interface MethodArgs {
   url?: any;
+  body?: any;
 }
 
 export type URLBuilder = (input: URLInput, args?: any) => string;

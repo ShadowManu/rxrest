@@ -10,6 +10,7 @@ describe('RxResource', () => {
 
   beforeEach(() => {
     rest = new RxRest();
+    (resource as any).config.requester.deleted = false;
   });
 
   it('can be created with minimum requirements', () => {
@@ -93,7 +94,15 @@ describe('RxResource', () => {
     it('should delete', (done) => {
       expect((resource as any).config.requester.deleted).toBe(false);
 
-      resource.delete({id: '5'}).subscribe(() => {
+      resource.delete('5').subscribe(() => {
+        expect((resource as any).config.requester.deleted).toBe(true);
+        done();
+      });
+    });
+
+    it('should have body and delete', (done) => {
+      expect((resource as any).config.requester.deleted).toBe(false);
+      resource.delete('5', { body: { id: '6' }}).subscribe(() => {
         expect((resource as any).config.requester.deleted).toBe(true);
         done();
       });
