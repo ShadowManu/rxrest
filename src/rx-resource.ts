@@ -91,7 +91,7 @@ export class RxResource<T> {
     let responseMapped = mapObservable(requested, this.config.responseMaps);
 
     // Make Observable code strict, saving the last result
-    let replayer = requested.publishReplay(1);
+    let replayer = responseMapped.publishReplay(1);
     replayer.connect();
 
     // Response maps
