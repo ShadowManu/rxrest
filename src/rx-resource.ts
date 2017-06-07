@@ -85,7 +85,7 @@ export class RxResource<T> {
     let requestMapped = mapObservable(Observable.of(body), this.config.requestMaps);
 
     // Make request
-    let requested = requestMapped.concatMap((finalBody: any) => this.config.requester.delete(url, { body: finalBody}));
+    let requested = requestMapped.concatMap((finalBody: any) => this.config.requester.delete(url, { body: finalBody }));
 
     // Response maps
     let responseMapped = mapObservable(requested, this.config.responseMaps);
